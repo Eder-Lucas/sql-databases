@@ -1,0 +1,6 @@
+-- Aula 02 - Estrutura gráfica no SQL Server Management Studio
+-- ------------------------------------
+-- Criação da tabela "Consultas" via interface gráfica do SQL Server Management Studio
+-- Inserção manual usando "Editar as 200 primeiras linhas".
+-- Não houve código SQL nesta aula.
+-- Prints das ações realizadas estão na pasta "prints".

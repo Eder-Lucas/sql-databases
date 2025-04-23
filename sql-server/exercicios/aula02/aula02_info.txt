@@ -1,0 +1,6 @@
+Aula 02 - Trabalhando com modo gráfico
+
+- Criação da tabela "Consultas" via interface gráfica do SQL Server Management Studio (SSMS).
+- Inserção manual de 200 registros usando "Editar as 200 primeiras linhas".
+- Não houve código SQL nesta aula.
+- Prints das ações realizadas estão na pasta "prints".
