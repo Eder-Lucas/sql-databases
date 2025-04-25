@@ -1,0 +1,5 @@
+--- MODELAGEM DE DADOS ---
+
+Nesta aula, foi criado um modelo conceitual para um consultório, utilizando o programa de modelagem "BrModelo".
+
+Caso você não possua o programa instalado, é possível visualizar o que foi criado acessando a pasta "prints", onde estão a imagem do modelo.
