@@ -1,0 +1,5 @@
+--- INTRODUÇÃO À LINGUAGEM SQL ---
+
+Nessa aula, comecei a entender a linguagem criando um banco de dados simples e adicionando valores pela janela gráfica do SQL Server.
+
+Você pode acessar os dados adicionados indo na pasta "Prints".
