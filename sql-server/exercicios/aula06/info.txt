@@ -1,0 +1,7 @@
+--- MODELANDO UM MODELO CONCEITUAL ---
+
+Nessa aula apliquei na prática o modelo conceitual
+
+Caso tenha o "BrModelo" pode abrir os arquivos facilmente acessando a pasta "modelo".
+
+Caso você não tenha o BrModelo, acesse a pasta "print" onde está tudo o que foi feito nessa aula.
