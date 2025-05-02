@@ -4,4 +4,4 @@ Nessa aula, comecei a entender a linguagem criando um banco de dados simples e a
 
 Você pode acessar o código acessando a pasta "sql"
 
-Você pode acessar os dados adicionados indo na pasta "Prints".
+Você pode acessar os dados adicionados indo na pasta "images".

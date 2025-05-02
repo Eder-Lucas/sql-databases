@@ -4,4 +4,4 @@ Nessa aula concheci os conceitos de cardinalidade nos modelos conceituais.
 
 Caso tenha o "BrModelo" pode abrir os arquivos facilmente acessando a pasta "modelos".
 
-Caso você não tenha o BrModelo, acesse a pasta "prints" onde está tudo o que foi feito nessa aula.
+Caso você não tenha o BrModelo, acesse a pasta "images" onde está tudo o que foi feito nessa aula.
