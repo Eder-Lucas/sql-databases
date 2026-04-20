@@ -1,0 +1,9 @@
+--- NORMALIZAÇÃO DE DADOS ---
+
+Nessa aula aprendi sobre a como normalizar os dados aplicando as 3 Formas Normais(1FN, 2FN, 3FN)
+
+Caso tenha o "BrModelo" pode abrir os arquivos após a normalização acessando a pasta "modelo".
+
+Caso você não tenha o BrModelo, acesse a pasta "images" onde está tudo o que foi feito nessa aula.
+
+OBS: No modelo final do ex002, optei por manter a relação Venda-Produto como 1:N para focar estritamente nos conceitos de normalização sem a necessidade de tabelas associativas.
