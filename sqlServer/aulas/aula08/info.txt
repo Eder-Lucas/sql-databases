@@ -6,4 +6,7 @@ Caso tenha o "BrModelo" pode abrir os arquivos após a normalização acessando 
 
 Caso você não tenha o BrModelo, acesse a pasta "images" onde está tudo o que foi feito nessa aula.
 
-OBS: No modelo final do ex002, optei por manter a relação Venda-Produto como 1:N para focar estritamente nos conceitos de normalização sem a necessidade de tabelas associativas.
+OBS:
+> No modelo final do ex002, a relação entre Venda e Produto foi simplificada para 1:N com o objetivo de focar exclusivamente nos conceitos de normalização, sem introduzir uma tabela associativa (N:N).
+
+> Foi utilizada a leitura cruzada para interpretação das cardinalidades. Como o BrModelo adota a leitura direta, essa será considerada ao gerar scripts SQL, garantindo consistência na implementação.
