@@ -1,0 +1,85 @@
+-- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+-- mudando para o "ponto neutro" do servidor para deletar com segurança
+USE master
+GO
+
+-- Se o banco da aula existir >>
+-- Força o banco para modo single user, derruba conexões ativas
+-- e cancela imediatamente todas as transações para permitir o DROP	
+IF DB_ID('Aula10_ex001') IS NOT NULL
+BEGIN
+    ALTER DATABASE Aula10_ex001 
+    SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+
+	-- Agora que não há nenhuma conexão, apaga o banco se existir
+    DROP DATABASE Aula10_ex001;
+END
+GO
+
+-- Cria o banco 
+CREATE DATABASE Aula10_ex001
+GO
+
+-- Começa a usar o banco criado
+USE Aula10_ex001
+GO
+
+-- Criando as tabelas
+CREATE TABLE Estado (
+	ID_ESTADO INT PRIMARY KEY,
+	SIGLA CHAR(2)
+)
+
+CREATE TABLE Cidade (
+	ID_CIDADE INT PRIMARY KEY,
+	ID_ESTADO INT,
+	NOME NVARCHAR(30),
+
+	FOREIGN KEY(ID_ESTADO) REFERENCES Estado (ID_ESTADO) ON UPDATE CASCADE
+)
+
+CREATE TABLE Fabricante (
+	ID_FABRICANTE INT PRIMARY KEY,
+	NOME NVARCHAR(30)
+)
+
+CREATE TABLE Carros (
+	ID_CARRO INT PRIMARY KEY,
+	ID_FABRICANTE INT,
+	MODELO NVARCHAR(50),
+	KM_ATUAL INT,
+
+	FOREIGN KEY(ID_FABRICANTE) REFERENCES Fabricante (ID_FABRICANTE) ON UPDATE CASCADE
+)
+
+CREATE TABLE Funcionarios (
+	ID_FUNCIONARIO INT PRIMARY KEY,
+	NOME NVARCHAR(50)
+)
+
+CREATE TABLE Clientes (
+	ID_CLIENTE INT PRIMARY KEY,
+	ID_CIDADE INT,
+	NOME NVARCHAR(50),
+	RUA NVARCHAR(30),
+	NUMERO INT,
+	CPF NVARCHAR(14),
+
+	FOREIGN KEY(ID_CIDADE) REFERENCES Cidade (ID_CIDADE)
+)
+
+CREATE TABLE Aluguel (
+	ID_ALUGUEL INT PRIMARY KEY,
+	ID_CLIENTE INT,
+	ID_FUNCIONARIO INT,
+	ID_CARRO INT,
+	DATA_ALUGUEL DATE,
+	DATA_DEVOLUCACAO DATE,
+
+	FOREIGN KEY(ID_CLIENTE) REFERENCES Clientes (ID_CLIENTE),
+	FOREIGN KEY(ID_FUNCIONARIO) REFERENCES Funcionarios (ID_FUNCIONARIO),
+	FOREIGN KEY(ID_CARRO) REFERENCES Carros (ID_CARRO)
+)
+
