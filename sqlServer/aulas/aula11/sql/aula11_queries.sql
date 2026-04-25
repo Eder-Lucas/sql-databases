@@ -24,3 +24,21 @@ VALUES(1, 'Jacinto Bala', '31/12/93', 'Rua Agente Secreto', 123, '(81) 9 9756-45
 UPDATE Matricula
 SET SITUACAO = 'Trancado'
 WHERE ID_TURMA = 1 AND SITUACAO <> 'Cursando';
+
+-- Mostra o que foi deletado
+DELETE FROM Matricula
+OUTPUT DELETED.* 
+WHERE ID_ALUNO = 1
+
+-- Usando Merge, executando duas operações numa única consulta
+-- Se tiver algum aluno cadastrado sem matrícula, a sua matrícula é inserida
+-- Se o aluno já tiver matriculado, apenas atualiza os dados
+MERGE Matricula
+USING Aluno
+ON Matricula.ID_ALUNO = Aluno.ID_ALUNO
+WHEN NOT MATCHED THEN
+INSERT (ID_ALUNO, ID_TURMA, SITUACAO)
+VALUES(Aluno.ID_ALUNO, 1, 'Cursando')
+WHEN MATCHED THEN
+UPDATE SET Matricula.SITUACAO = 'Cursando', Matricula.ID_TURMA = 2
+OUTPUT $ACTION, INSERTED.*;
