@@ -1,0 +1,51 @@
+﻿-- Usa o master por segurança
+USE master
+GO
+
+-- Se já existir o banco dessa aula
+-- Remove todos os usu�rios e cancela as transa��es para excluir de forma segura
+IF DB_ID('Aula11_ex002') IS NOT NULL
+BEGIN
+	ALTER DATABASE Aula11_ex002
+	SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+
+	DROP DATABASE Aula11_ex002
+END
+GO
+
+-- Cria o banco do exemplo 002
+CREATE DATABASE Aula11_ex002
+GO
+
+-- Começa a usar o banco criado
+USE Aula11_ex002
+GO
+
+-- Cria as tabelas
+CREATE TABLE Estado(
+	ID_ESTADO INT IDENTITY PRIMARY KEY,
+	SIGLA CHAR(2)
+)
+
+CREATE TABLE Cidade(
+	ID_CIDADE INT IDENTITY PRIMARY KEY,
+	NOME NVARCHAR(30),
+	ID_ESTADO INT,
+
+	FOREIGN KEY(ID_ESTADO) REFERENCES Estado(ID_ESTADO) ON UPDATE CASCADE
+)
+
+CREATE TABLE Departamento(
+	ID_DEP INT IDENTITY(1,1) PRIMARY KEY,
+	NOME_DEPARTAMENTO NVARCHAR(50),
+	ID_CIDADE INT,
+
+	FOREIGN KEY(ID_CIDADE) REFERENCES Cidade(ID_CIDADE) ON UPDATE CASCADE
+)
+
+CREATE TABLE Empregado(
+	ID_EMPREGADO INT IDENTITY(1,1) PRIMARY KEY,
+	NOME_EMPREGADO NVARCHAR(50),
+	TELEFONE VARCHAR(16),
+
+)
