@@ -30,9 +30,10 @@ DELETE FROM Matricula
 OUTPUT DELETED.* 
 WHERE ID_ALUNO = 1
 
--- Usando Merge, executando duas operações numa única consulta
--- Se tiver algum aluno cadastrado sem matrícula, a sua matrícula é inserida
--- Se o aluno já tiver matriculado, apenas atualiza os dados
+-- Usando Merge, executando três operações numa única consulta
+-- Se tiver algum aluno cadastrado sem matrícula, a sua matrícula é inserida (NOT MATCHED)
+-- Se o aluno já tiver matriculado, apenas atualiza os dados (MATCHED)
+-- Se tiver uma matrícula com um aluno que ainda não foi cadastrado, remove (NOT MATCHED BY SOURCE)
 MERGE Matricula
 USING Aluno
 ON Matricula.ID_ALUNO = Aluno.ID_ALUNO
@@ -41,4 +42,5 @@ INSERT (ID_ALUNO, ID_TURMA, SITUACAO)
 VALUES(Aluno.ID_ALUNO, 1, 'Cursando')
 WHEN MATCHED THEN
 UPDATE SET Matricula.SITUACAO = 'Cursando', Matricula.ID_TURMA = 2
-OUTPUT $ACTION, INSERTED.*;
+WHEN NOT MATCHED BY SOURCE THEN DELETE
+OUTPUT $ACTION, DELETED.*, INSERTED.*;
