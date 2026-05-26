@@ -23,13 +23,13 @@ WHERE Livros.ID_CATEGORIA = Categorias.ID_CATEGORIA
 -- com GROUP BY > conta por grupo
 
 SELECT COUNT(*) AS TOTAL_CATEGORIA FROM Livros -- Conta tudo junto
-SELECT ID_CATEGORIA, COUNT(*) AS TOTAL_CATEGORIA FROM Livros GROUP BY ID_CATEGORIA -- Quantos livros existem em cada categoria?
+SELECT ID_CATEGORIA, COUNT(*) AS TOTAL_LIVROS FROM Livros GROUP BY ID_CATEGORIA -- Quantos livros existem em cada categoria?
 
 -- Quantos livros com determinada categoria existem
 -- Seleciona o Nome da categoria
 -- Conta quantos registros existem onde: o idCategoria aparece na tabela livros
 -- Agrupa pelo nome da Categoria, contando o total de categorias e não apenas retornando o total bruto
-SELECT Categorias.NOME, COUNT(*) AS TOTAL_CATEGORIAS FROM Livros, Categorias
+SELECT Categorias.NOME, COUNT(*) AS TOTAL_LIVROS FROM Livros, Categorias
 WHERE Livros.ID_CATEGORIA = Categorias.ID_CATEGORIA
 GROUP BY Categorias.NOME
 
