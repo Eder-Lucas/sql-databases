@@ -17,3 +17,6 @@ GO
 
 EXEC mostraProdutos 5
 GO
+
+EXEC controleProducao 1,6
+GO
