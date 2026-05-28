@@ -1,11 +1,19 @@
 USE Aula13_ex001
 GO
 
+-- Executando stored procedures
+
 EXEC sp_help
 
 EXEC insereCategoria
-@descricaoCategoria = 'Massas Pães'
+@descricaoCategoria = 'Salgados'
 GO
 
-EXEC insereCategoria 'Doces'
+EXEC insereCategoria 'Bolachas'
+GO
+
+EXEC mostraProdutos
+GO
+
+EXEC mostraProdutos 5
 GO
