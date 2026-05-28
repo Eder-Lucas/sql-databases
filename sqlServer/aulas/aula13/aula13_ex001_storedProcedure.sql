@@ -35,9 +35,9 @@ CREATE PROCEDURE controleProducao
 	@idProduto INT
 AS
 BEGIN
-	INSERT Producao VALUES(@quant, GETDATE(), @idProduto)
+	INSERT Producao VALUES(@quant, GETDATE(), @idProduto) -- Insere o produto na produção
 
-	EXEC atualizaEstoque @quant, @idProduto
+	EXEC atualizaEstoque @quant, @idProduto -- Chama a procedure pra atualizar o estoque
 	
 	SELECT * FROM Estoque
 	WHERE ID_PRODUTO = @idProduto
@@ -50,8 +50,21 @@ CREATE PROCEDURE atualizaEstoque
 	@idProduto INT
 AS
 BEGIN
-	UPDATE Estoque
-	SET QTD_ESTOQUE	= QTD_ESTOQUE + @quant
-	WHERE ID_PRODUTO = @idProduto
+	-- Verifica se o produto existe na tabela estoque
+	IF EXISTS (
+		SELECT 1 FROM Estoque
+		WHERE ID_PRODUTO = @idProduto
+	)
+	BEGIN -- Se existir, atualiza o estoque
+		UPDATE Estoque
+		SET QTD_ESTOQUE	= QTD_ESTOQUE + @quant
+		WHERE ID_PRODUTO = @idProduto
+	END
+
+	ELSE -- Se não existir, insere o produto adicionando a quantidade em estoque
+	BEGIN
+		INSERT INTO Estoque(ID_PRODUTO, QTD_ESTOQUE) VALUES
+		(@idProduto, @quant)
+	END
 END
 GO
