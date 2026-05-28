@@ -57,3 +57,16 @@ CREATE TABLE Vendas (
 
 	CONSTRAINT FK_VENDAS_PRODUTO FOREIGN KEY(ID_PRODUTO) REFERENCES Produtos(ID_PRODUTO)
 )
+
+-- Inserindo dados iniciais
+INSERT INTO Categorias(DESCRICAO_CATEGORIA) VALUES
+('Massas e Pães'),
+('Doces');
+
+INSERT INTO Produtos(NOME_PRODUTO, DESCRICAO, ID_CATEGORIA) VALUES
+('Pão Francês', 'Pão francês de tamanho médio', 1),
+('Pão Sirio', 'Pão sirio de tamango médio', 1),
+('Pão Carteira', 'Pão carteira médio', 1),
+('Bolo recheado', 'Bolo recheado com cobertura', 2),
+('Bolo de milho', 'Bolo de milho com cobertura de chocolate', 2),
+('Brigadeiro', 'Brigadeiro de tamanho médio', 2);
