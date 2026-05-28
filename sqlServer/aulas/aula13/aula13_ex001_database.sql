@@ -70,3 +70,7 @@ INSERT INTO Produtos(NOME_PRODUTO, DESCRICAO, ID_CATEGORIA) VALUES
 ('Bolo recheado', 'Bolo recheado com cobertura', 2),
 ('Bolo de milho', 'Bolo de milho com cobertura de chocolate', 2),
 ('Brigadeiro', 'Brigadeiro de tamanho médio', 2);
+
+INSERT Estoque(ID_PRODUTO, QTD_ESTOQUE) VALUES
+(6, 1),
+(2, 10);
