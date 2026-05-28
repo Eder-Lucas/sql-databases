@@ -28,3 +28,30 @@ BEGIN
 	END
 END
 GO
+
+-- Procedure que cria uma produçãoe já atualiza o estoque 
+CREATE PROCEDURE controleProducao
+	@quant INT,
+	@idProduto INT
+AS
+BEGIN
+	INSERT Producao VALUES(@quant, GETDATE(), @idProduto)
+
+	EXEC atualizaEstoque @quant, @idProduto
+	
+	SELECT * FROM Estoque
+	WHERE ID_PRODUTO = @idProduto
+END
+GO
+
+-- Procedure para atualizar o estoque de um produto
+CREATE PROCEDURE atualizaEstoque
+	@quant INT,
+	@idProduto INT
+AS
+BEGIN
+	UPDATE Estoque
+	SET QTD_ESTOQUE	= QTD_ESTOQUE + @quant
+	WHERE ID_PRODUTO = @idProduto
+END
+GO
