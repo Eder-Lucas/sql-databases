@@ -88,7 +88,8 @@ INSERT INTO Livros(ISBN, ID_CATEGORIA, ID_AUTOR, TITULO, DATA_PUBLICACAO) VALUES
 ('978-6555522303', '1', '2', 'Arsène Lupin, o Ladrão de Casaca', '08/01/21'),
 ('978-8535914061', '1', '1', 'Capitães da areia', '11/02/09'),
 ('978-6555521733', '2', '3', 'Da Terra à Lua', '05/01/21'),
-('978-6555948820', '3', '4', 'H.P. Lovecraft - O Habitante da Escurid�o', '27/06/25');
+('978-6555948820', '3', '4', 'H.P. Lovecraft - O Habitante da Escuridão', '27/06/25'),
+('978-8535911824', '1', '1', 'Mar morto', '10/03/08');
 
 INSERT INTO Aluguel(ID_USUARIO, ID_LIVRO, DATA_ALUGUEL, DATA_DEVOLUCAO, DEVOLVIDO) VALUES
 ('3', '2', @DataInicio, @DataFinal, 0),
