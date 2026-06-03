@@ -18,6 +18,8 @@ LEFT JOIN Aluguel a -- DIREITA
 	FROM A
 	LEFT JOIN B
 	"Quero todas as linhas de A e, se existir correspondência, os dados de B."
+
+	Quando tiver com dúvida sobre um JOIN, remover o GROUP BY e os COUNTs e fazer um SELECT das colunas envolvidas.
 */
 
 -- Outro exemplo mas aqui o titulo aparece
@@ -35,15 +37,25 @@ LEFT JOIN Aluguel a
 	ON u.ID_USUARIO = a.ID_USUARIO
 WHERE a.ID_LIVRO IS NULL
 
+-- Traz quantos alugueis cada livro tem
 SELECT ls.TITULO, COUNT(*) AS ALUGUEIS
 FROM Aluguel a
 INNER JOIN Livros ls
 	ON a.ID_LIVRO = ls.ID_LIVRO
-GROUP BY a.ID_LIVRO, ls.TITULO
+GROUP BY ls.TITULO
 
 -- Conta quantos livros existem em determinadas categorias usando COUNT e LEFT JOIN
+-- COUNT(ls.ID_LIVRO) > Conta apenas as linhas da tabela da direita onde o resultado não é NULL
+-- Permitindo que uma categoria sem livro fique com '0', usando (*) ficaria '1' mesmo sendo NULL
 SELECT c.NOME, COUNT(ls.ID_LIVRO) AS QUANTIDADE_LIVROS
 FROM Categorias c
 LEFT JOIN Livros ls
 	ON c.ID_CATEGORIA = ls.ID_CATEGORIA 
 GROUP BY c.NOME
+
+SELECT ls.TITULO, a.DATA_ALUGUEL, u.NOME
+FROM Aluguel a
+RIGHT JOIN Livros ls
+	ON a.ID_LIVRO = ls.ID_LIVRO
+LEFT JOIN Usuarios u
+	ON u.ID_USUARIO = a.ID_USUARIO
