@@ -65,3 +65,12 @@ SELECT a.NOME_AUTOR, ISNULL(ls.TITULO, 'SEM LIVROS REGISTRADOS') AS TITULO
 FROM Livros ls -- ESQUERDA
 RIGHT JOIN Autores a -- DIREITA
 	ON a.ID_AUTOR = ls.ID_AUTOR
+
+-- Junta a ideia do LEFT JOIN e RIGHT JOIN
+-- Traz todas a linhas da tabela da esquerda e todas da direita, o que não tiver associação fica com NULL
+SELECT ls.TITULO, au.NOME_AUTOR, a.DATA_ALUGUEL
+FROM Livros ls
+FULL JOIN Autores au
+	ON ls.ID_AUTOR = au.ID_AUTOR
+FULL JOIN Aluguel a
+	ON ls.ID_LIVRO = a.ID_LIVRO
