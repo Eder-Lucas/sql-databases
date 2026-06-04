@@ -54,8 +54,14 @@ LEFT JOIN Livros ls
 GROUP BY c.NOME
 
 SELECT ls.TITULO, a.DATA_ALUGUEL, u.NOME
-FROM Aluguel a
-RIGHT JOIN Livros ls
+FROM Aluguel a -- Retorna NULL se não tiver associação
+RIGHT JOIN Livros ls -- Sempre retorna
 	ON a.ID_LIVRO = ls.ID_LIVRO
 LEFT JOIN Usuarios u
 	ON u.ID_USUARIO = a.ID_USUARIO
+
+-- Todos os autores são retornados, mas os livros podem vir com NULL
+SELECT a.NOME_AUTOR, ISNULL(ls.TITULO, 'SEM LIVROS REGISTRADOS') AS TITULO 
+FROM Livros ls -- ESQUERDA
+RIGHT JOIN Autores a -- DIREITA
+	ON a.ID_AUTOR = ls.ID_AUTOR
