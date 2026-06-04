@@ -82,7 +82,8 @@ INSERT INTO Autores(NOME_AUTOR) VALUES
 ('Jorge Amado'),
 ('Maurice Leblanc'),
 ('Júlio Verne'),
-('H.P Lovecraft');
+('H.P Lovecraft'),
+('Machado de Assis');
 
 INSERT INTO Livros(ISBN, ID_CATEGORIA, ID_AUTOR, TITULO, DATA_PUBLICACAO) VALUES
 ('978-6555522303', '1', '2', 'Arsène Lupin, o Ladrão de Casaca', '08/01/21'),
