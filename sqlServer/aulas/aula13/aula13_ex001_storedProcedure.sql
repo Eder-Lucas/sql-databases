@@ -68,3 +68,15 @@ BEGIN
 	END
 END
 GO
+
+-- Retorna a quantidade através do select
+CREATE PROCEDURE quantidadeProduto
+	@idProduto INT,
+	@qtdProduzida INT OUTPUT
+AS
+BEGIN
+	SELECT @qtdProduzida = QTD_ESTOQUE
+	FROM Estoque
+		WHERE ID_PRODUTO = @idProduto
+END
+GO

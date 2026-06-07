@@ -22,3 +22,11 @@ GO
 
 EXEC controleProducao 2,5
 GO
+
+-- Procedure que retorna um valor
+DECLARE @qtd INT
+EXEC quantidadeProduto
+	5,
+	@qtd OUTPUT
+
+PRINT 'A quantidade desse produto é ' + CAST(@qtd AS VARCHAR(10))
