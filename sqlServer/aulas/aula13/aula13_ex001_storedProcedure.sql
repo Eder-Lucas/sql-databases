@@ -80,3 +80,17 @@ BEGIN
 		WHERE ID_PRODUTO = @idProduto
 END
 GO
+
+CREATE PROCEDURE insereProduto
+	@nome NVARCHAR(50),
+	@descricao NVARCHAR(200),
+	@idCategoria INT,
+	@idProduto INT OUTPUT
+AS
+BEGIN
+	INSERT INTO Produtos(NOME_PRODUTO, DESCRICAO, ID_CATEGORIA)
+	OUTPUT inserted.ID_PRODUTO
+	VALUES (@nome, @descricao, @idCategoria)
+
+	SET @idProduto = SCOPE_IDENTITY()
+END
