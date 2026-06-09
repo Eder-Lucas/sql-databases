@@ -39,3 +39,22 @@ EXEC insereProduto
 	@idProduto OUTPUT
 
 PRINT 'Produto gerado com id ' + CAST(@idProduto AS VARCHAR(20))
+
+
+-- Usando Return da Stored Procedure
+DECLARE @data DATE = GETDATE()
+DECLARE @retorno INT
+
+EXEC @retorno = realizaVenda
+	@qtdVendida = 2,
+	@dataVenda = @data
+
+SELECT @retorno AS CÓDIGO_SAIDA
+
+IF @retorno = 000
+	PRINT 'VENDA REGISTRADA SEM ERROS ÀS ' + CAST(@data AS VARCHAR(20))
+ELSE IF @retorno = 101
+	PRINT 'VENDA NÃO REGISTRADA POR FALTA DE INFORMAÇÕES'
+ELSE
+	PRINT 'ERRO DESCONHECIDO'
+	

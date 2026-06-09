@@ -89,8 +89,26 @@ CREATE PROCEDURE insereProduto
 AS
 BEGIN
 	INSERT INTO Produtos(NOME_PRODUTO, DESCRICAO, ID_CATEGORIA)
-	OUTPUT inserted.ID_PRODUTO
+	OUTPUT inserted.ID_PRODUTO -- Retorna o id alterado, ou seja, gerado (Result Set)
 	VALUES (@nome, @descricao, @idCategoria)
 
-	SET @idProduto = SCOPE_IDENTITY()
+	SET @idProduto = SCOPE_IDENTITY() -- Atribui o id à variável
 END
+GO
+
+CREATE PROCEDURE realizaVenda
+	@idProduto INT = NULL,
+	@qtdVendida INT,
+	@dataVenda DATE
+AS
+BEGIN
+	IF @idProduto IS NULL
+		RETURN 101
+
+	INSERT INTO Vendas(ID_PRODUTO, QTD_VENDIDA, DATA_VENDA)
+	OUTPUT INSERTED.*
+	VALUES (@idProduto, @qtdVendida, @dataVenda)
+
+	RETURN 000
+END
+GO
