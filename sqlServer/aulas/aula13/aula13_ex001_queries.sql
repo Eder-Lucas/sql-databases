@@ -27,6 +27,15 @@ GO
 DECLARE @qtd INT
 EXEC quantidadeProduto
 	5,
-	@qtd OUTPUT
+	@qtd OUTPUT -- A saída é salva nessa variável
 
 PRINT 'A quantidade desse produto é ' + CAST(@qtd AS VARCHAR(10))
+
+DECLARE @idProduto INT
+EXEC insereProduto 
+	'Chocolate amargo',
+	'1 barra de chocolate amargo',
+	2,
+	@idProduto OUTPUT
+
+PRINT 'Produto gerado com id ' + CAST(@idProduto AS VARCHAR(20))
