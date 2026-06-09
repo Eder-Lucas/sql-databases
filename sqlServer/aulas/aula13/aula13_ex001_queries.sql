@@ -46,6 +46,7 @@ DECLARE @data DATE = GETDATE()
 DECLARE @retorno INT
 
 EXEC @retorno = realizaVenda
+	@idProduto = NULL,
 	@qtdVendida = 2,
 	@dataVenda = @data
 

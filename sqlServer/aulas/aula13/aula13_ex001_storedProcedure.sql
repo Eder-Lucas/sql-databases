@@ -97,12 +97,14 @@ END
 GO
 
 CREATE PROCEDURE realizaVenda
-	@idProduto INT = NULL,
+	@idProduto INT,
 	@qtdVendida INT,
 	@dataVenda DATE
 AS
 BEGIN
 	IF @idProduto IS NULL
+		OR @qtdVendida IS NULL
+		OR @dataVenda IS NULL
 		RETURN 101
 
 	INSERT INTO Vendas(ID_PRODUTO, QTD_VENDIDA, DATA_VENDA)
