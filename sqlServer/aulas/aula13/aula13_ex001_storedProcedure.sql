@@ -105,12 +105,14 @@ BEGIN
 	IF @idProduto IS NULL
 		OR @qtdVendida IS NULL
 		OR @dataVenda IS NULL
+	BEGIN
 		RETURN 101
+	END
 
 	INSERT INTO Vendas(ID_PRODUTO, QTD_VENDIDA, DATA_VENDA)
 	OUTPUT INSERTED.*
 	VALUES (@idProduto, @qtdVendida, @dataVenda)
 
-	RETURN 000
+	RETURN 0
 END
 GO
