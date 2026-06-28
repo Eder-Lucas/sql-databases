@@ -43,7 +43,7 @@ CREATE TABLE Endereco (
     RUA NVARCHAR(50) NOT NULL,
     NUMERO NVARCHAR(7) NOT NULL,
     BAIRRO NVARCHAR(50) NOT NULL,
-    COMPLEMENTO NVARCHAR(50) NOT NULL,
+    COMPLEMENTO NVARCHAR(50),
     ID_CIDADE INT NOT NULL,
     CEP NVARCHAR(10) NOT NULL,
 
@@ -91,3 +91,68 @@ CREATE TABLE Pedido (
 	CONSTRAINT FK_PEDIDO_FUNCIONARIO FOREIGN KEY(ID_FUNCIONARIO) REFERENCES Funcionario(ID_FUNCIONARIO),
 	CONSTRAINT FK_PEDIDO_PRODUTO FOREIGN KEY(ID_PRODUTO) REFERENCES Produto(ID_PRODUTO)
 );
+
+-- Insere dados iniciais
+INSERT INTO Estado (NOME, SIGLA) VALUES
+('Acre', 'AC'),
+('Alagoas', 'AL'),
+('Amapá', 'AP'),
+('Amazonas', 'AM'),
+('Bahia', 'BA'),
+('Ceará', 'CE'),
+('Distrito Federal', 'DF'),
+('Espírito Santo', 'ES'),
+('Goiás', 'GO'),
+('Maranhão', 'MA'),
+('Mato Grosso', 'MT'),
+('Mato Grosso do Sul', 'MS'),
+('Minas Gerais', 'MG'),
+('Pará', 'PA'),
+('Paraíba', 'PB'),
+('Paraná', 'PR'),
+('Pernambuco', 'PE'),
+('Piauí', 'PI'),
+('Rio de Janeiro', 'RJ'),
+('Rio Grande do Norte', 'RN'),
+('Rio Grande do Sul', 'RS'),
+('Rondônia', 'RO'),
+('Roraima', 'RR'),
+('Santa Catarina', 'SC'),
+('São Paulo', 'SP'),
+('Sergipe', 'SE'),
+('Tocantins', 'TO');
+
+DECLARE @ID_PE INT
+DECLARE @ID_BA INT
+
+SELECT @ID_PE = ID_ESTADO FROM Estado WHERE SIGLA = 'PE'
+SELECT @ID_BA = ID_ESTADO FROM Estado WHERE SIGLA = 'BA'
+
+INSERT INTO Cidade(NOME, ID_ESTADO) VALUES
+('Recife', @ID_PE),
+('Salvador', @ID_BA);
+
+INSERT INTO Endereco(RUA, NUMERO, BAIRRO, COMPLEMENTO, ID_CIDADE, CEP) VALUES
+('Rua do Caixote', '1123', 'Centro', 'Proximo a Bom Destino', 1, '2220-000'),
+('Av. Dourados', '234', 'Pescados', NULL, 2, '5560-090'),
+('Rod. Luiz Carlos', '1900', 'Centro', 'Ao lado do Galpão 12', 1, '2220-001'),
+('Rua Vicente Claro', '12', 'Rio Vermellho', NULL, 2, '5561-204');
+
+INSERT INTO Funcionario(NOME_FUNCIONARIO, ID_ENDERECO, FUNCAO) VALUES
+('Francisco Alves', 1, 'Engenheiro Civil'),
+('Edvaldo Carvalho', 2, 'Engenheiro Civil');
+
+INSERT INTO Fornecedor VALUES('Chico Construção & Servicos', 3, 'Revenda de materiais de construção');
+
+INSERT Produto(NOME_PRODUTO, DESCRICAO_PRODUTO) VALUES
+('Tijolo', 'Bloco de tijolo cozido'),
+('Areia Fina', 'Areia do tipo fina'),
+('Areia Grossa', 'Areia do tipo grossa'),
+('Cimento Woltorium', 'Cimento para construção'),
+('Cal Woltorium', 'Cal para pinturas diversas');
+
+INSERT Trabalho(ID_ENDERECO, PROPRIETARIO, DESCRICAO_TRABALHO) VALUES
+(4, 'Pedro Xavier', 'Fazer o canal de esgoto da propriedade');
+
+INSERT Pedido(ID_FORNECEDOR, ID_TRABALHO, ID_FUNCIONARIO, ID_PRODUTO, DATA_SOLICITACAO, DATA_ATENDIDO) VALUES
+(1, 1, 2, 2, '12/08/25', '13/09/26');
