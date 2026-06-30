@@ -84,7 +84,7 @@ CREATE TABLE Pedido (
     ID_FUNCIONARIO INT NOT NULL,
     ID_PRODUTO INT NOT NULL,
     DATA_SOLICITACAO DATETIME NOT NULL,
-    DATA_ATENDIDO DATETIME NOT NULL,
+    DATA_ATENDIDO DATETIME,
 
 	CONSTRAINT FK_PEDIDO_FORNECEDOR FOREIGN KEY(ID_FORNECEDOR) REFERENCES Fornecedor(ID_FORNECEDOR),
 	CONSTRAINT FK_PEDIDO_TRABALHO FOREIGN KEY(ID_TRABALHO) REFERENCES Trabalho(ID_TRABALHO),
@@ -136,23 +136,32 @@ INSERT INTO Endereco(RUA, NUMERO, BAIRRO, COMPLEMENTO, ID_CIDADE, CEP) VALUES
 ('Rua do Caixote', '1123', 'Centro', 'Proximo a Bom Destino', 1, '2220-000'),
 ('Av. Dourados', '234', 'Pescados', NULL, 2, '5560-090'),
 ('Rod. Luiz Carlos', '1900', 'Centro', 'Ao lado do Galpão 12', 1, '2220-001'),
+('Rod. Luiz Carlos', '1901', 'Centro', 'Em frente a Chico Construção', 1, '2220-001'),
 ('Rua Vicente Claro', '12', 'Rio Vermellho', NULL, 2, '5561-204');
 
 INSERT INTO Funcionario(NOME_FUNCIONARIO, ID_ENDERECO, FUNCAO) VALUES
 ('Francisco Alves', 1, 'Engenheiro Civil'),
-('Edvaldo Carvalho', 2, 'Engenheiro Civil');
+('Edvaldo Carvalho', 2, 'Engenheiro Civil'),
+('Rivaldo Peixoto', 2, 'Pedreiro Sênior');
 
-INSERT INTO Fornecedor VALUES('Chico Construção & Servicos', 3, 'Revenda de materiais de construção');
+INSERT INTO Fornecedor VALUES
+('Chico Construção & Servicos', 3, 'Revenda de materiais de construção'),
+('Ricardinho Encanamentos', 4, 'Revenda de materias de encanamento');
 
 INSERT Produto(NOME_PRODUTO, DESCRICAO_PRODUTO) VALUES
 ('Tijolo', 'Bloco de tijolo cozido'),
 ('Areia Fina', 'Areia do tipo fina'),
 ('Areia Grossa', 'Areia do tipo grossa'),
 ('Cimento Woltorium', 'Cimento para construção'),
+('Tubo esgoto 90mm', 'Tubo para esgoto com 90mm'),
 ('Cal Woltorium', 'Cal para pinturas diversas');
 
 INSERT Trabalho(ID_ENDERECO, PROPRIETARIO, DESCRICAO_TRABALHO) VALUES
 (4, 'Pedro Xavier', 'Fazer o canal de esgoto da propriedade');
 
 INSERT Pedido(ID_FORNECEDOR, ID_TRABALHO, ID_FUNCIONARIO, ID_PRODUTO, DATA_SOLICITACAO, DATA_ATENDIDO) VALUES
-(1, 1, 2, 2, '12/08/25', '13/09/26');
+(1, 1, 2, 2, '12/08/25', '13/09/26'),
+(2, 1, 1, 5, '13/08/25', NULL),
+(1, 1, 3, 1, '11/08/25', NULL),
+(1, 1, 3, 4, '11/08/25', NULL),
+(1, 1, 3, 6, '14/08/25', '20/08/25');
