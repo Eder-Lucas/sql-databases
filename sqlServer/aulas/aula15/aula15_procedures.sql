@@ -1,6 +1,7 @@
 USE Aula15_projetoFinal
 GO
 
+-- Procedure que lista todos os pedidos com formatação, sem aparecer os IDs
 CREATE PROCEDURE MostraPedidos
 AS
 BEGIN
@@ -16,6 +17,7 @@ BEGIN
 END
 GO
 
+-- Atualiza o atendimento do pedido ou se não for informado o pedido, mostra todos os pedidos
 CREATE PROCEDURE SelecionaAtualizaPedido
 	@idPedido INT = NULL
 AS
