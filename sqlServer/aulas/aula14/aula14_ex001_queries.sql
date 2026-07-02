@@ -1,6 +1,11 @@
 USE Aula14_ex001
 GO
 
+-- Mostra as duas tabelas juntas
+SELECT a.*, l.* FROM Aluguel a
+INNER JOIN Livros l
+ON l.ID_LIVRO = a.ID_LIVRO
+
 -- Correspondência dos dois lados
 SELECT u.NOME, l.TITULO, a.DATA_ALUGUEL, a.DATA_DEVOLUCAO, a.DEVOLVIDO FROM Aluguel a
 INNER JOIN Usuarios u
@@ -9,7 +14,7 @@ INNER JOIN Livros l
 	ON l.ID_LIVRO = a.ID_LIVRO
 
 -- Traz tudo da esquerda + o que combina da direita, o que não combina vem como NULL
-SELECT NOME, EMAIL, a.ID_LIVRO, u.ID_USUARIO, a.ID_USUARIO
+SELECT u.NOME, u.EMAIL, a.ID_LIVRO, u.ID_USUARIO, a.ID_USUARIO AS ID_USUARIO_ALUGUEL
 FROM Usuarios u -- ESQUERDA
 LEFT JOIN Aluguel a -- DIREITA
 	ON u.ID_USUARIO = a.ID_USUARIO
@@ -27,8 +32,8 @@ SELECT u.NOME, u.EMAIL, a.ID_LIVRO, ls.TITULO
 FROM Usuarios u
 LEFT JOIN Aluguel a
 	ON u.ID_USUARIO = a.ID_USUARIO
-LEFT JOIN Livros ls -- Usa os dados do primeiro left join
-	ON ls.ID_LIVRO = a.ID_LIVRO
+LEFT JOIN Livros ls 
+	ON ls.ID_LIVRO = a.ID_LIVRO -- Usa os dados do primeiro left join
 
 -- Traz apenas quem não tem aluguel
 SELECT NOME, EMAIL, a.ID_LIVRO
